@@ -1,0 +1,139 @@
+1. Profile Before Optimization
+
+# Implementation:
+import time
+
+start = time.time()
+
+# your API logic
+for i in range(1000000):
+    pass
+
+end = time.time()
+print("Execution Time:", end - start)
+
+Advanced Tool:
+cProfile
+python -m cProfile main.py
+
+2. Choose Correct Concurrency Model
+
+Type	Use Case
+Async	API calls, I/O tasks
+Threads	Light parallel tasks
+Multiprocessing	CPU-heavy tasks
+
+example:
+import asyncio
+
+async def task():
+    await asyncio.sleep(1)
+    return "Done"
+
+async def main():
+    results = await asyncio.gather(task(), task())
+    print(results)
+
+asyncio.run(main())
+
+3. Implement Multi-Level Caching
+✅ Levels:
+Memory cache
+Redis cache
+CDN (optional)
+✅ Example (Redis):
+import redis
+
+cache = redis.Redis()
+
+def get_data(key):
+    data = cache.get(key)
+    if data:
+        return data
+    
+    data = "DB Data"
+    cache.set(key, data)
+    return data
+
+4. Database Optimization (Indexing)
+✅ Problem:
+
+Slow queries
+
+✅ Solution:
+CREATE INDEX idx_name ON users(name);
+
+✔ Improves query speed drastically
+
+5. Connection Pooling
+✅ Why:
+
+Avoid creating DB connection again & again
+
+✅ Example:
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    "postgresql://user:pass@localhost/db",
+    pool_size=10,
+    max_overflow=20
+)
+
+✔ Faster DB operations
+
+ 6. Circuit Breaker Pattern
+✅ Why:
+
+Avoid system crash when external API fails
+
+✅ Example:
+def external_call():
+    try:
+        return requests.get("API_URL")
+    except:
+        return "Service unavailable"
+
+✔ Improves reliability
+
+ 7. Compression for Large Data
+✅ Example:
+import gzip
+
+data = b"Large data here"
+compressed = gzip.compress(data)
+
+✔ Reduces network load
+
+ 8. Rate Limiting
+✅ Why:
+
+Prevent server overload
+
+✅ Example (FastAPI):
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+limiter = Limiter(key_func=get_remote_address)
+
+@app.get("/data")
+@limiter.limit("5/minute")
+async def get_data():
+    return {"msg": "Limited API"}
+
+✔ Prevents abuse
+
+9. Continuous Monitoring
+✅ Metrics:
+Response time
+Errors
+Traffic
+✅ Example:
+import time
+
+def monitor():
+    start = time.time()
+    # API logic
+    print("Time:", time.time() - start)
+✅ Tools:
+Prometheus
+Grafana
