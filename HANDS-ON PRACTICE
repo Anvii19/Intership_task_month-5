@@ -1,0 +1,90 @@
+1. Build Multi-threaded & Async Applications
+✅ Async (Best for APIs)
+import asyncio
+
+async def fetch_data():
+    await asyncio.sleep(1)
+    return "Data fetched"
+
+async def main():
+    results = await asyncio.gather(fetch_data(), fetch_data())
+    print(results)
+
+asyncio.run(main())
+✅ Multi-threading
+from threading import Thread
+
+def task():
+    print("Running task")
+
+t1 = Thread(target=task)
+t2 = Thread(target=task)
+
+t1.start()
+t2.start()
+
+
+2. Optimize Database Queries
+✅ Before Optimization:
+SELECT * FROM users;
+❌ Problem:
+Slow & unnecessary data
+
+✅ After Optimization:
+SELECT name, email FROM users WHERE email='test@gmail.com';
+CREATE INDEX idx_email ON users(email);
+
+3. Write Comprehensive Test Suites
+✅ Unit Test Example:
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_api():
+    response = client.get("/")
+    assert response.status_code == 200
+
+4. Profile & Optimize Performance
+✅ Profiling:
+import time
+
+start = time.time()
+
+for i in range(1000000):
+    pass
+
+print("Time:", time.time() - start)
+✅ Optimization:
+Use async
+Use caching
+Reduce loops
+
+5. Implement Design Patterns
+✅ Example: Singleton Pattern
+class Database:
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+6. Microservices & Distributed Systems
+✅ Concept:
+
+Breaking application into small independent services
+
+✅ Features:
+Independent deployment
+Scalable
+Fault isolation
+✅ Architecture:
+Service 1 → API Gateway ← Service 2
+                ↓
+             Database
+✅ Example:
+User Service
+Order Service
+Payment Service
+
