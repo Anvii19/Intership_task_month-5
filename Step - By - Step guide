@@ -1,0 +1,510 @@
+# Week 1 — Architecture Design & Setup
+
+## Goal
+
+Design the application structure and prepare the development environment.
+
+---
+
+# Tasks
+
+✅ Define project requirements
+✅ Design architecture
+✅ Create project structure
+✅ Install dependencies
+✅ Setup GitHub repository
+
+---
+
+# Step 1: Create Project Folder
+
+```plaintext id="5gricb"
+high_performance_app/
+```
+
+---
+
+# Step 2: Create Professional Structure
+
+```plaintext id="f0q0r0"
+high_performance_app/
+│
+├── src/
+├── tests/
+├── docker/
+├── kubernetes/
+├── docs/
+├── scripts/
+├── config/
+├── requirements.txt
+├── README.md
+└── main.py
+```
+
+---
+
+# Step 3: Install Required Libraries
+
+```bash id="n9l8po"
+pip install flask psutil requests pytest
+```
+
+---
+
+# Step 4: Create requirements.txt
+
+## File: `requirements.txt`
+
+```plaintext id="49hix1"
+flask
+psutil
+requests
+pytest
+```
+
+---
+
+# Step 5: Initialize GitHub
+
+```bash id="q1r2mu"
+git init
+```
+
+---
+
+# Step 6: Create Basic API
+
+## File: `src/api/app.py`
+
+```python id="7b7w4q"
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+
+def home():
+
+    return {
+        "message": "High Performance App Running"
+    }
+
+if __name__ == "__main__":
+    app.run(debug=True)
+```
+
+---
+
+# Week 2 — Core Implementation
+
+## Goal
+
+Build core application functionality with concurrency and parallelism.
+
+---
+
+# Tasks
+
+✅ Build APIs
+✅ Add threading
+✅ Add multiprocessing
+✅ Create services
+
+---
+
+# Step 1: Business Logic
+
+## File: `src/services/math_service.py`
+
+```python id="1fg50g"
+def calculate_sum(a, b):
+
+    return a + b
+```
+
+---
+
+# Step 2: Threading Example
+
+## File: `src/services/thread_service.py`
+
+```python id="d4pjlwm"
+import threading
+
+def task():
+
+    print("Thread Running")
+
+thread = threading.Thread(target=task)
+
+thread.start()
+```
+
+---
+
+# Step 3: Multiprocessing Example
+
+## File: `src/services/process_service.py`
+
+```python id="85r6mu"
+from multiprocessing import Process
+
+def worker():
+
+    print("Process Running")
+
+p = Process(target=worker)
+
+p.start()
+```
+
+---
+
+# Why Use Concurrency?
+
+Benefits:
+
+✅ Faster execution
+✅ Better performance
+✅ Handle multiple users
+✅ Efficient resource usage
+
+---
+
+# Week 3 — Optimization & Testing
+
+## Goal
+
+Improve performance and implement testing.
+
+---
+
+# Tasks
+
+✅ Add unit tests
+✅ Add integration tests
+✅ Optimize code
+✅ Benchmark performance
+
+---
+
+# Step 1: Unit Test
+
+## File: `tests/unit/test_math.py`
+
+```python id="hrwjlwm"
+from src.services.math_service import calculate_sum
+
+def test_sum():
+
+    assert calculate_sum(2, 3) == 5
+```
+
+---
+
+# Step 2: Integration Test
+
+## File: `tests/integration/test_api.py`
+
+```python id="xv73n0"
+def test_api():
+
+    assert True
+```
+
+---
+
+# Step 3: Performance Test
+
+## File: `tests/performance/test_speed.py`
+
+```python id="94a9k1"
+import time
+
+start = time.time()
+
+for i in range(1000000):
+    pass
+
+end = time.time()
+
+print("Execution Time:", end - start)
+```
+
+---
+
+# Run Tests
+
+```bash id="r0mjlwm"
+pytest
+```
+
+---
+
+# Week 4 — Advanced Features
+
+## Goal
+
+Add caching, monitoring, and advanced architecture patterns.
+
+---
+
+# Tasks
+
+✅ Add cache system
+✅ Add monitoring tools
+✅ Improve scalability
+
+---
+
+# Step 1: Cache System
+
+## File: `src/cache/cache_manager.py`
+
+```python id="41sqmb"
+cache = {}
+
+def set_cache(key, value):
+
+    cache[key] = value
+
+def get_cache(key):
+
+    return cache.get(key)
+```
+
+---
+
+# Step 2: Monitoring System
+
+## File: `src/monitoring/system_monitor.py`
+
+```python id="5b8v2j"
+import psutil
+
+def monitor():
+
+    return {
+        "CPU": psutil.cpu_percent(),
+        "Memory": psutil.virtual_memory().percent
+    }
+```
+
+---
+
+# Benefits
+
+✅ Faster response time
+✅ Reduced database load
+✅ Better system tracking
+
+---
+
+# Week 5 — Production Readiness
+
+## Goal
+
+Prepare application for production deployment.
+
+---
+
+# Tasks
+
+✅ Add logging
+✅ Add error handling
+✅ Add configuration management
+
+---
+
+# Step 1: Logging
+
+## File: `src/utils/logger.py`
+
+```python id="8aqvqm"
+import logging
+
+logging.basicConfig(
+    filename='app.log',
+    level=logging.INFO
+)
+
+def log(message):
+
+    logging.info(message)
+```
+
+---
+
+# Step 2: Error Handling
+
+```python id="g2vjlwm"
+try:
+
+    result = 10 / 0
+
+except Exception as e:
+
+    print("Error:", e)
+```
+
+---
+
+# Step 3: Configuration File
+
+## File: `config/settings.json`
+
+```json id="3v7mbu"
+{
+  "debug": true,
+  "port": 5000
+}
+```
+
+---
+
+# Week 6 — Deployment & Documentation
+
+## Goal
+
+Deploy application and create complete documentation.
+
+---
+
+# Tasks
+
+✅ Create Docker container
+✅ Add Kubernetes deployment
+✅ Create README
+✅ Add performance benchmark
+
+---
+
+# Step 1: Dockerfile
+
+## File: `docker/Dockerfile`
+
+```dockerfile id="c7pjlwm"
+FROM python:3.11
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "src/api/app.py"]
+```
+
+---
+
+# Build Docker Image
+
+```bash id="wjlwmf"
+docker build -t high-performance-app .
+```
+
+---
+
+# Run Docker Container
+
+```bash id="cqeq4q"
+docker run -p 5000:5000 high-performance-app
+```
+
+---
+
+# Step 2: Kubernetes Deployment
+
+## File: `kubernetes/deployment.yaml`
+
+```yaml id="7p4nh5"
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: high-performance-app
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: high-performance-app
+
+  template:
+    metadata:
+      labels:
+        app: high-performance-app
+
+    spec:
+      containers:
+      - name: app
+        image: high-performance-app
+        ports:
+        - containerPort: 5000
+```
+
+---
+
+# Deploy to Kubernetes
+
+```bash id="jlwm1n"
+kubectl apply -f deployment.yaml
+```
+
+---
+
+# Step 3: Create README.md
+
+## File: `README.md`
+
+````markdown id="jlwm2m"
+# High Performance App
+
+## Features
+
+- API Layer
+- Monitoring
+- Caching
+- Docker Support
+- Kubernetes Deployment
+- Testing
+
+## Run
+
+```bash
+python src/api/app.py
+```
+````
+
+---
+
+# Step 4: Performance Benchmark
+
+## File: `docs/performance.md`
+
+```plaintext id="w1wgoe"
+API Response Time: 120ms
+CPU Usage: 35%
+Memory Usage: 40%
+```
+
+---
+
+# Final Skills Demonstrated
+
+This project demonstrates:
+
+✅ Software Architecture
+✅ API Development
+✅ Concurrency & Parallelism
+✅ Testing
+✅ Monitoring
+✅ Docker
+✅ Kubernetes
+✅ Deployment
+✅ Logging
+✅ Performance Optimization
+
+---
+
