@@ -1,0 +1,287 @@
+# 1. What optimization techniques provide the best performance gains?
+
+Performance optimization techniques improve application speed, scalability, and resource efficiency.
+
+## Best Optimization Techniques
+
+### Caching
+
+Stores frequently used data temporarily.
+
+Benefits:
+
+* Faster response time
+* Reduced database load
+
+Example:
+
+```python id="nv7tqh"
+cache = {}
+
+cache["user"] = "Muskan"
+
+
+### Database Indexing
+
+Indexes speed up database searches.
+
+Benefits:
+
+* Faster query execution
+* Better scalability
+
+Example:
+
+```sql id="8xjlwm"
+CREATE INDEX idx_email ON users(email);
+
+
+### Concurrency & Parallelism
+
+Run multiple tasks simultaneously using:
+
+* Threading
+* Multiprocessing
+* Async programming
+
+Benefits:
+
+* Better CPU usage
+* Faster processing
+
+
+### Load Balancing
+
+Distributes traffic across servers.
+
+Benefits:
+
+* Prevents server overload
+* Improves availability
+
+
+
+### Query Optimization
+
+Improves SQL query performance.
+
+Benefits:
+
+* Faster database operations
+* Reduced execution time
+
+
+### Efficient Algorithms
+
+Using optimized logic reduces processing time.
+
+Benefits:
+
+* Better memory usage
+* Faster execution
+
+
+# 2. How does architecture design affect scalability?
+
+Architecture design determines how easily an application can grow and handle increased users or data.
+
+## Good Architecture Improves:
+
+### Maintainability
+
+Modules are easier to manage.
+
+### Scalability
+
+System can handle more traffic.
+
+### Performance
+
+Efficient communication between components.
+
+### Flexibility
+
+New features can be added easily.
+
+
+# Example: Modular Architecture
+
+```plaintext id="jlwm9n"
+src/
+├── api/
+├── services/
+├── database/
+├── cache/
+└── monitoring/
+
+
+## Benefits of Good Architecture
+
+✅ Easy scaling
+✅ Better performance
+✅ Easier testing
+✅ Reduced complexity
+✅ Improved code organization
+
+---
+
+# 3. What monitoring metrics are most important for performance?
+
+Monitoring metrics help track system health and application performance.
+
+## Important Metrics
+
+### CPU Usage
+
+Measures processor utilization.
+
+### Memory Usage
+
+Tracks RAM consumption.
+
+### Disk Usage
+
+Checks storage availability.
+
+### API Response Time
+
+Measures request processing speed.
+
+### Error Rate
+
+Tracks application failures.
+
+### Network Usage
+
+Measures bandwidth and traffic.
+
+### Database Query Time
+
+Measures database performance.
+
+# Example Monitoring Code
+
+```python id="jlwm98"
+import psutil
+
+print("CPU:", psutil.cpu_percent())
+
+print("Memory:", psutil.virtual_memory().percent)
+
+
+## Why Monitoring is Important
+
+✅ Detect bottlenecks
+✅ Prevent downtime
+✅ Improve reliability
+✅ Track system health
+
+
+# 4. How can concurrency be managed effectively?
+
+Concurrency allows multiple operations to run simultaneously.
+
+## Methods to Manage Concurrency
+
+### Threading
+
+Best for lightweight tasks.
+
+### Multiprocessing
+
+Best for CPU-intensive tasks.
+
+### Async Programming
+
+Efficient for I/O operations.
+
+### Task Queues
+
+Use systems like:
+
+* Celery
+* RabbitMQ
+
+
+# Best Practices
+
+### Avoid Race Conditions
+
+Use locks when accessing shared data.
+
+### Limit Thread Count
+
+Too many threads reduce performance.
+
+### Use Thread Pools
+
+Reuse worker threads efficiently.
+
+---
+
+# Example: Thread Lock
+
+```python id="5y77gh"
+import threading
+
+lock = threading.Lock()
+
+with lock:
+
+    print("Safe Access")
+```
+
+
+## Benefits of Proper Concurrency
+
+✅ Faster processing
+✅ Better resource utilization
+✅ Improved scalability
+
+
+# 5. What are the trade-offs between different optimization strategies?
+
+Every optimization technique has advantages and disadvantages.
+
+| Strategy          | Advantages          | Trade-Offs                |
+| ----------------- | ------------------- | ------------------------- |
+| Caching           | Faster response     | More memory usage         |
+| Threading         | Better multitasking | Complex debugging         |
+| Multiprocessing   | High performance    | Higher CPU usage          |
+| Database Indexing | Faster queries      | Slower insert/update      |
+| Load Balancing    | Better scalability  | Infrastructure complexity |
+| Async Programming | Efficient I/O       | Harder code management    |
+
+
+# Key Understanding
+
+Optimization always involves balancing:
+
+* Speed
+* Memory
+* Complexity
+* Scalability
+* Cost
+
+## Q1. Best Optimization Techniques
+
+> The best optimization techniques include caching, database indexing, concurrency, efficient algorithms, and load balancing.
+
+
+## Q2. Architecture & Scalability
+
+> Good architecture improves scalability by separating modules, improving maintainability, and allowing efficient resource management.
+
+
+## Q3. Important Monitoring Metrics
+
+> Important monitoring metrics include CPU usage, memory usage, API response time, error rates, and database performance.
+
+
+## Q4. Managing Concurrency
+
+> Concurrency can be managed using threading, multiprocessing, async programming, locks, and thread pools.
+
+## Q5. Trade-offs in Optimization
+
+> Optimization strategies improve performance but may increase complexity, memory usage, or infrastructure cost.
